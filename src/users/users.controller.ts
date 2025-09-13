@@ -1,10 +1,12 @@
 import { Body, Controller, Post, Get, Query, Param, Delete, Patch, NotFoundException } from '@nestjs/common';
+import { Serialize } from '../interceptors/serialize.interceptor';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { updateUserDto } from './dtos/update-user.dto';
 import { UsersService } from './users.service';
-import { NotFoundError } from 'rxjs';
+import { UserDto } from './user-dto';
 
 @Controller('auth')
+@Serialize(UserDto)
 export class UsersController {
     constructor(private userSservice : UsersService){}
 
